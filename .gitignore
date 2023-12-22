@@ -1,1 +1,6 @@
+# IntelliJ files
 .idea
+GolangInterpreter.iml
+
+# Go File
+go.mod
