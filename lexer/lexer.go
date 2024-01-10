@@ -14,6 +14,11 @@ type Lexer struct {
 var keywords = map[string]token.TokenType{
 	"fn":  token.FUNCTION,
 	"let": token.LET,
+	"if": token.IF,
+	"else": token.ELSE,
+	"return": token.RETURN,
+	"true": token.TRUE,
+	"false": token.FALSE,
 }
 
 func LookupIdent(ident string) token.TokenType {
@@ -59,6 +64,18 @@ func (l *Lexer) NextToken() token.Token {
 		tok = newToken(token.COMMA, l.ch)
 	case '+':
 		tok = newToken(token.PLUS, l.ch)
+	case '-':
+		tok = newToken(token.MINUS, l.ch)
+	case '*':
+		tok = newToken(token.ASTERISK, l.ch)
+	case '/':
+		tok = newToken(token.SLASH, l.ch)
+	case '!':
+		tok = newToken(token.BANG, l.ch)
+	case '>':
+		tok = newToken(token.GT, l.ch)
+	case '<':
+		tok = newToken(token.LT, l.ch)
 	case '{':
 		tok = newToken(token.LBRACE, l.ch)
 	case '}':
