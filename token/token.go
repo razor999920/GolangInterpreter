@@ -43,5 +43,7 @@ const (
 
 	TRUE = "TRUE"
 	FALSE = "FALSE"
-
+	
+	EQ = "=="
+	NOT_EQ = "!="
 )
