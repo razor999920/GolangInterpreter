@@ -19,19 +19,15 @@ var keywords = map[string]token.TokenType{
 	"return": token.RETURN,
 	"true": token.TRUE,
 	"false": token.FALSE,
+
 }
 
 func LookupIdent(ident string) token.TokenType {
 	if tok, ok := keywords[ident]; ok {
 		return tok
 	}
-	return token.IDENT
-}
 
-func New(input string) *Lexer {
-	l := &Lexer{input: input}
-	l.readChar()
-	return l
+	return token.IDENT
 }
 
 func (l *Lexer) NextToken() token.Token {
@@ -111,6 +107,12 @@ func (l *Lexer) readChar() {
 	l.position = l.readPosition
 
 	l.readPosition += 1
+}
+
+func New(input string) *Lexer {
+	l := &Lexer{input: input}
+	l.readChar()
+	return l
 }
 
 func newToken(tokenType token.TokenType, ch byte) token.Token {
