@@ -1,9 +1,9 @@
 package parser
 
 import (
+	"monkey/ast"
 	"monkey/lexer"
 	"testing"
-	"monkey/ast"
 )
 
 func TestLetStatements(t *testing.T) {
@@ -17,7 +17,7 @@ func TestLetStatements(t *testing.T) {
 	p := New(l)
 
 	program := p.ParseProgram()
-	if program != nil {
+	if program == nil {
 		t.Fatalf("ParseProgram() returned nil")
 	}
 	if len(program.Statements) != 3 {
