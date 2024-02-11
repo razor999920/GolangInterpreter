@@ -59,3 +59,12 @@ func (rs *ReturnStatement) TokenLiteral() string {
 	return rs.Token.Literal
 }
 
+type ExpressionStatement struct {
+	Token token.Token
+	Expression Expression
+}
+
+func (es *ExpressionStatement) statementNode() {}
+func (es *ExpressionStatement) TokenLitera() string {
+	return es.Token.Literal
+}
