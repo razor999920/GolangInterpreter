@@ -110,3 +110,9 @@ func checkParserErrors(t *testing.T, p *Parser) {
 
 	t.FailNow()
 }
+
+func TestString(t *testing.T) {
+	program := &Program{
+
+	}
+}
