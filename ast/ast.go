@@ -113,7 +113,7 @@ func (es *ExpressionStatement) TokenLitera() string {
 }
 func (es *ExpressionStatement) String() string {
 	if es.Expression != nil {
-		return es.Expression
+		return es.Expression.String()
 	}
 	
 	return ""
