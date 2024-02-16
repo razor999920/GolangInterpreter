@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func testString (t *testing.T) {
+func TestString (t *testing.T) {
 	program := &Program {
 		Statements: []Statement{
 			&LetStatement{

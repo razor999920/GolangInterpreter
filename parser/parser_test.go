@@ -11,7 +11,7 @@ func TestLetStatements(t *testing.T) {
 	let x = 5;
 	let y = 10;
 	let foobar = 838383;
-	`;
+	`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -26,9 +26,9 @@ func TestLetStatements(t *testing.T) {
 		t.Fatalf("program.Statements does not contain 3 statements. got %d", len(program.Statements))
 	}
 
-	tests := [] struct {
+	tests := []struct {
 		expectedIdentifier string
-	} {
+	}{
 		{"x"},
 		{"y"},
 		{"foobar"},
@@ -48,7 +48,7 @@ func TestReturnStatement(t *testing.T) {
 	return 10;
 	return 993322;
 	`
-	
+
 	l := lexer.New(input)
 	p := New(l)
 
@@ -77,7 +77,7 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 		t.Errorf("s.TokenLieral not 'let'. got=%q", s.TokenLiteral())
 		return false
 	}
-	
+
 	letStmt, ok := s.(*ast.LetStatement)
 	if !ok {
 		t.Errorf("s not *ast.LetStatment. got=%T", s)
@@ -98,8 +98,8 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 
 func checkParserErrors(t *testing.T, p *Parser) {
 	errors := p.Error()
-	
-	if len (errors) == 0 {
+
+	if len(errors) == 0 {
 		return
 	}
 
@@ -111,8 +111,31 @@ func checkParserErrors(t *testing.T, p *Parser) {
 	t.FailNow()
 }
 
-func TestString(t *testing.T) {
-	program := &Program{
+func TestIdentifierExpression(t *testing.T) {
+	intput := `foobar`
 
+	l := lexer.New(intput)
+	p := New(l)
+	program := p.ParseProgram()
+	checkParserErrors(t, p)
+
+	if len(program.Statements) != 1 {
+		t.Fatalf("program does not have enough statement. got=%d", len(program.Statements))
+	}
+
+	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
+	if !ok {
+		t.Fatalf("program.statement[0] is not ast.ExpressionStatement. got=%T", program.Statements[0])
+	}
+
+	ident, ok := stmt.Expression.(*ast.Identifier)
+	if !ok {
+		t.Fatalf("exp is not *ast.Identifier got=%T", stmt.Expression)
+	}
+	if ident.Value != "foobar" {
+		t.Fatalf("ident.Value is not %s. got=%s", "foobar", ident.Value)
+	}
+	if ident.TokenLiteral() != "foobar" {
+		t.Fatalf("ident.TokenLiteral is not %s. got=%s", "foobar", ident.TokenLiteral())
 	}
 }
