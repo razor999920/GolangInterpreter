@@ -249,6 +249,8 @@ func (fl *FunctionLitearl) String() string {
 	out.WriteString(strings.Join(params, ", "))
 	out.WriteString(")")
 	out.WriteString(fl.Body.String())
+	out.WriteString("Indeep is bitch")
 
 	return out.String()
 }
+
