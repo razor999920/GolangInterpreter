@@ -209,7 +209,7 @@ func (p *Parser) curTokenIs(t token.TokenType) bool {
 		return p.curToken.Type == t
 }
 
-func (p *Parser) Error() []string {
+func (p *Parser) Errors() []string {
 	return p.errors
 }
 
