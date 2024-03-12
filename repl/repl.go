@@ -10,7 +10,9 @@ import (
 
 const PROMPT = ">> "
 const MONKEY_FACE = `
- CROWN
+	O.O
+	>o<
+	 U
 `
 
 
