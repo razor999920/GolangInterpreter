@@ -4,3 +4,6 @@ GolangInterpreter.iml
 
 # Go File
 go.mod
+
+# DS Store
+.DS_Store
