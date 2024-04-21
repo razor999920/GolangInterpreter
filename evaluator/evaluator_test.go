@@ -8,10 +8,10 @@ import (
 )
 
 func TestEvalIntegerExpression(t *testing.T) {
- tests := []struct {
-		input string
+	tests := []struct {
+		input    string
 		expected int64
-	} {
+	}{
 		{"5", 5},
 		{"10", 10},
 		{"-5", -5},
@@ -39,8 +39,9 @@ func testEval(input string) object.Object {
 	l := lexer.New(input)
 	p := parser.New(l)
 	program := p.ParseProgram()
+	env := object.NewEnvironment()
 
-	return Eval(program)
+	return Eval(program, env)
 }
 
 func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
@@ -60,9 +61,9 @@ func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
 
 func TestEvalBooleanExpression(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected bool
-	} {
+	}{
 		{"true", true},
 		{"false", false},
 		{"1 < 2", true},
@@ -85,7 +86,7 @@ func TestEvalBooleanExpression(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		 evaluated := testEval(tt.input)
+		evaluated := testEval(tt.input)
 		testBooleanObject(t, evaluated, tt.expected)
 	}
 }
@@ -101,15 +102,15 @@ func testBooleanObject(t *testing.T, obj object.Object, exptected bool) bool {
 		t.Errorf("object has wrong value. got=%t, want=%t", result.Value, exptected)
 		return false
 	}
-	
+
 	return true
 }
 
 func TestBangOperator(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected bool
-	} {
+	}{
 		{"!true", false},
 		{"!false", true},
 		{"!5", false},
@@ -126,9 +127,9 @@ func TestBangOperator(t *testing.T) {
 
 func TestIfElesExpresions(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected interface{}
-	} {
+	}{
 		{"if (true) { 10 }", 10},
 		{"if (false) { 10 }", nil},
 		{"if (1) { 10 }", 10},
@@ -160,9 +161,9 @@ func testNullObject(t *testing.T, obj object.Object) bool {
 
 func TestReturnStatements(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected int64
-	} {
+	}{
 		{"return 10;", 10},
 		{"return 10; 9;", 10},
 		{"return 2 * 5; 9;", 10},
@@ -183,9 +184,9 @@ func TestReturnStatements(t *testing.T) {
 
 func TestErrorHandling(t *testing.T) {
 	tests := []struct {
-		input string
+		input           string
 		expectedMessage string
-	} {
+	}{
 		{
 			"5 + true;",
 			"type mismatch: INTEGER + BOOLEAN",
@@ -201,7 +202,7 @@ func TestErrorHandling(t *testing.T) {
 		{
 			"true + false;",
 			"unknown operator: BOOLEAN + BOOLEAN",
-		}, 
+		},
 		{
 			"5; true + false; 5",
 			"unknown operator: BOOLEAN + BOOLEAN",
@@ -209,7 +210,7 @@ func TestErrorHandling(t *testing.T) {
 		{
 			"if (10 > 1) { true + false; }",
 			"unknown operator: BOOLEAN + BOOLEAN",
-		}, 
+		},
 		{
 			`
 			if (10 > 1) {
@@ -240,9 +241,9 @@ func TestErrorHandling(t *testing.T) {
 
 func TestLetStatement(t *testing.T) {
 	tests := []struct {
-		input string
-		expected int64 
-	} {
+		input    string
+		expected int64
+	}{
 
 		{"let a = 5; a;", 5},
 		{"let a = 5 * 5; a;", 25},
