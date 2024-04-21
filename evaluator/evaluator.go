@@ -13,6 +13,7 @@ var (
 )
 
 func Eval(node ast.Node) object.Object {
+	log.Fatelf('Test')
 	switch node := node.(type) {
 	// Statements
 	case *ast.Program:
