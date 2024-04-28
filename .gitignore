@@ -1,6 +1,7 @@
-# IntelliJ files
+# IDE files
 .idea
 GolangInterpreter.iml
+.zed
 
 # Go File
 go.mod
