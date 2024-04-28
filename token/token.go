@@ -37,13 +37,15 @@ const (
 	// Keywords
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
-	IF = "IF"
-	ELSE = "ELSE"
-	RETURN = "RETURN"
+	IF       = "IF"
+	ELSE     = "ELSE"
+	RETURN   = "RETURN"
 
-	TRUE = "TRUE"
+	TRUE  = "TRUE"
 	FALSE = "FALSE"
-	
-	EQ = "=="
+
+	EQ     = "=="
 	NOT_EQ = "!="
+
+	STRING = "STRING"
 )
