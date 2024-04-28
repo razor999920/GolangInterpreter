@@ -5,7 +5,7 @@ Golang is a statically typed, complied language. Hence, it does not have an inte
 ## Install
 
 ```
-go mod tidy
+go install github.com/razor999920/GolangInterpreter@latest
 ```
 
 ## Run
