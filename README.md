@@ -13,3 +13,5 @@ go install github.com/razor999920/GolangInterpreter@latest
 ```
 go run main.go
 ```
+
+## Example
