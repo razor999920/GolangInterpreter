@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func TestString (t *testing.T) {
-	program := &Program {
+func TestString(t *testing.T) {
+	program := &Program{
 		Statements: []Statement{
 			&LetStatement{
 				Token: token.Token{Type: token.LET, Literal: "let"},
