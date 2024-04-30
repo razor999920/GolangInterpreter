@@ -15,3 +15,4 @@ go run main.go
 ```
 
 ## Example
+![alt Example] (https://github.com/razor999920/GolangInterpreter/examples/languageSyntax.png)
